@@ -7,4 +7,5 @@ xgboost
 lightgbm
 catboost
 openpyxl
+dill
 #-e .

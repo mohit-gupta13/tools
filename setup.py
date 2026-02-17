@@ -18,7 +18,6 @@ setup(
     version="0.0.1",
     author="Mohit",
     author_email="gupta2004mohit@gmail.com",
-    packages=find_packages(where="src"),  # 👈 looks inside src/
-    package_dir={"": "src"},              # 👈 tells Python src is the root package
+    packages=find_packages(), 
     install_requires=get_requirements("requirements.txt"),
 )
