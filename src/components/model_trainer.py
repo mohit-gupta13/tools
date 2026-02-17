@@ -44,14 +44,54 @@ class ModelTrainer:
                 "Linear Regression": LinearRegression(),
                 "Decision Tree": DecisionTreeRegressor(),
                 "KNeighbors": KNeighborsRegressor(),
-                "XGBoost": XGBRegressor(),
-                "AdaBoost": AdaBoostRegressor(),
-                "GradientBoosting": GradientBoostingRegressor(),
                 "RandomForest": RandomForestRegressor(),
-                "CatBoost": CatBoostRegressor(verbose=0)
+                "GradientBoosting": GradientBoostingRegressor(),
+                "AdaBoost": AdaBoostRegressor(),
+                "XGBoost": XGBRegressor(),
+                "CatBoost": CatBoostRegressor()
             }
+            
+            params = {
+
+                "Linear Regression": {},
+
+                "Decision Tree": {
+                    "criterion": ["squared_error", "friedman_mse", "absolute_error", "poisson"],
+                },
+
+                "KNeighbors": {
+                    "n_neighbors": [5, 7],
+                },
+
+                "RandomForest": {
+                    "n_estimators": [8, 16, 32, 64, 128, 256],
+                },
+
+                "GradientBoosting": {
+                    "learning_rate": [0.1, 0.01, 0.05, 0.001],
+                    "n_estimators": [8, 16, 32, 64, 128, 256]
+                },
+
+                "AdaBoost": {
+                    "learning_rate": [0.1, 0.01, 0.5, 0.001],
+                    "n_estimators": [8, 16, 32, 64, 128, 256]
+                },
+
+                "XGBoost": {
+                    "learning_rate": [0.1, 0.01, 0.05],
+                    "n_estimators": [8, 16, 32, 64, 128, 256]
+                },
+
+                "CatBoost": {
+                    "depth": [6, 8, 10],
+                    "learning_rate": [0.01, 0.05, 0.1],
+                    "iterations": [30, 50, 100]
+                }
+            }
+
+
                         
-            model_report = evaluate_models(X_train, y_train, X_test, y_test, models)
+            model_report = evaluate_models(X_train, y_train, X_test, y_test, models=models, param=params)
             
             logging.info("Model training completed")
 
